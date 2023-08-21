@@ -17,7 +17,23 @@ By using this dataset in our project, we can train machine learning models to an
 For more Information: https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+The Heart Failure Prediction dataset from Kaggle contains the following features:
+
+- Age: The age of the patient (numeric)
+- Anaemia: Whether the patient has anaemia (0 = No, 1 = Yes)
+- High Blood Pressure: Whether the patient has high blood pressure (0 = No, 1 = Yes)
+- Creatinine Phosphokinase: Level of the enzyme CPK in the blood (numeric)
+- Diabetes: Whether the patient has diabetes (0 = No, 1 = Yes)
+- Ejection Fraction: Percentage of blood leaving the heart at each contraction (numeric)
+- Platelets: Platelet count in the blood (numeric)
+- Serum Creatinine: Level of creatinine in the blood (numeric)
+- Serum Sodium: Level of sodium in the blood (numeric)
+- Sex: Gender of the patient (0 = Female, 1 = Male)
+- Smoking: Whether the patient smokes or not (0 = No, 1 = Yes)
+- Time: Follow-up period in days (numeric)
+- Death Event: Whether the patient died during the follow-up period (0 = No, 1 = Yes)
+- 
+These features provide valuable information about the patients and their health conditions, which can be used to predict the likelihood of heart failure.
 
 ### Access
 *TODO*: Explain how you are accessing the data in your workspace.
