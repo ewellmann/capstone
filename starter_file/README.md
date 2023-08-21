@@ -8,7 +8,19 @@ The Capstone Project for the Azure Machine Learning Engineer Nanodegree allows u
 ## Dataset
 
 ### Overview
-*TODO*: Explain about the data you are using and where you got it from.
+
+Cardiovascular diseases (CVDs) are the number 1 cause of death globally, taking an estimated 17.9 million lives each year, which accounts for 31% of all deaths worlwide.
+Heart failure is a common event caused by CVDs and this dataset contains 12 features that can be used to predict mortality by heart failure.
+
+Most cardiovascular diseases can be prevented by addressing behavioural risk factors such as tobacco use, unhealthy diet and obesity, physical inactivity and harmful use of alcohol using population-wide strategies.
+
+People with cardiovascular disease or who are at high cardiovascular risk (due to the presence of one or more risk factors such as hypertension, diabetes, hyperlipidaemia or already established disease) need early detection and management wherein a machine learning model can be of great help.
+
+The Heart Failure Prediction dataset from Kaggle is a widely used dataset in the field of healthcare and machine learning. It contains clinical records of 299 patients who experienced heart failure, including various demographic, clinical, and laboratory features. The dataset provides valuable information such as age, sex, smoking status, blood pressure, serum creatinine levels, and more.
+
+The objective of this dataset is to predict whether a patient is at risk of heart failure based on these features. It is a classification problem where the target variable is a binary outcome indicating the presence or absence of heart failure.
+
+By using this dataset in our project, we can train machine learning models to analyze the relationship between these features and heart failure, and ultimately build a predictive model that can accurately identify individuals at risk. This dataset offers a valuable opportunity to apply our machine learning skills in a real-world healthcare context
 
 ### Task
 *TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
