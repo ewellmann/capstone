@@ -1,6 +1,6 @@
 # Capstone Project: Azure Machine Learning Engineer
 
-*TODO:* Write a short introduction to your project.
+The Capstone Project for the Azure Machine Learning Engineer Nanodegree allows us to apply your knowledge and skills to solve a real-world problem using Azure Machine Learning. We will create two models, one using Automated Machine Learning (AutoML) and another with customized hyperparameters using HyperDrive. The project requires us to compare the performance of both models and deploy the best one as a web service. We will also need to submit a README file detailing the data, models, performance, and deployment process.
 
 ## Project Set Up and Installation
 *OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
