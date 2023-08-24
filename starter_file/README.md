@@ -40,6 +40,23 @@ These features provide valuable information about the patients and their health 
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+```python
+automl_settings = {
+    "experiment_timeout_minutes": 20,
+    "max_concurrent_iterations": 5,
+    "primary_metric" : 'accuracy'
+}
+
+# TODO: Put your automl config here
+automl_config = AutoMLConfig(
+        task='classification',
+        compute_target=compute_target,
+        training_data=ds,
+        label_column_name='DEATH_EVENT',
+        n_cross_validations=4,
+        **automl_settings
+)
+```
 
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
