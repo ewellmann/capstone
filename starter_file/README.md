@@ -3,6 +3,8 @@
 The Capstone Project for the Azure Machine Learning Engineer Nanodegree allows us to apply your knowledge and skills to solve a real-world problem using Azure Machine Learning. We will create two models, one using Automated Machine Learning (AutoML) and another with customized hyperparameters using HyperDrive. The project requires us to compare the performance of both models and deploy the best one as a web service. We will also need to submit a README file detailing the data, models, performance, and deployment process.
 
 ## Project Workflow
+
+The workflow of the project involves choosing an external dataset, importing it into the workspace, and training two models using automated ML and HyperDrive. The performance of the models is then compared, and the best-performing model is deployed as a web service. Finally, the model endpoint is tested, and a README file is completed to describe the project and its results.
 ![architecture](screenshots/architecture.png)
 
 ## Dataset
@@ -36,7 +38,7 @@ The Heart Failure Prediction dataset from Kaggle contains the following features
 These features provide valuable information about the patients and their health conditions, which can be used to predict the likelihood of heart failure.
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+To import external data using the `TabularDatasetFactory` in Azure Machine Learning, you can provide the URL or the path to the data source as a parameter to the `from_delimited_files` method. This will create a TabularDataset object that can be used for further data processing and model training.
 
 ![acess_data](screenshots/acess_data.png)
 
@@ -70,10 +72,53 @@ Beste results were archieved using `VotingEnsemble` Algorithm withg an accuracy 
 ![automl_votingensemble_overview](screenshots/automl_votingensemble_overview.png)
 ![automl_bestmodel_metrics](screenshots/automl_bestmodel_metrics.png)
 ### Future Improvements
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+To improve the output of the Automated ML model, following steps can be considered to achive better results:
+
+1. Increase the experiment timeout duration to allow for more time for model training and exploration of different algorithms and configurations.
+2. Enable early stopping to terminate poorly performing iterations early and focus on iterations that show promise.
+3. Adjust the primary metric to prioritize the evaluation metric that is most important for your specific problem.
+4. Increase the concurrency settings to run multiple iterations in parallel, allowing for more exploration of different models and hyperparameters.
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+
+For the HyperDrive run we choose the logistic regression algorithm from the SKLearn framewokr. Logistic regression is a popular algorithm used for binary classification tasks. In the HyperDrive model, you can specify the hyperparameters of the logistic regression algorithm, such as the regularization strength `c` and the number of iterations `max_iter`. The HyperDrive will then explore different combinations of hyperparameters to find the best-performing model based on the specified evaluation metric
+
+### Hyperdrive Configuration
+
+We chose `BanditPolicy` as the early stopping policy. BanditPolicy stops poorly performing runs based on a slack factor and evaluation interval. It compares the performance of each run to the best performing run at a given evaluation interval and terminates runs that are not within the slack factor of the best performing run.
+
+As hyperparameter sampling method we choose RandomParameterSampling that randomly selects values for each hyperparameter from a defined search space. It allows for a more comprehensive exploration of the hyperparameter space, increasing the chances of finding the optimal combination of hyperparameters for the model.
+
+Any other parameters such as searchspace, primary metric, total_runs, ... can be found in the codesnipped below.
+
+```python
+# Create an early termination policy. This is not required if you are using Bayesian sampling.
+early_termination_policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
+
+# Create the different params that you will be using during training
+param_sampling = RandomParameterSampling(
+    {
+        '--C': choice(0.01,0.1,1,10,20,50),
+        '--max_iter': choice(50,100,500)
+    }
+)
+
+# Create your estimator and hyperdrive config
+sklearn_env = Environment.from_conda_specification(name='sklearn-env', file_path='conda_dependencies.yaml')
+estimator = ScriptRunConfig(source_directory="./.",
+                      script='train.py',
+                      compute_target=compute_target,
+                      environment=sklearn_env)
+
+hyperdrive_config = HyperDriveConfig(run_config = estimator,
+                hyperparameter_sampling=param_sampling, 
+                primary_metric_name='Accuracy',
+                primary_metric_goal=PrimaryMetricGoal.MAXIMIZE,
+                policy=early_termination_policy,
+                max_total_runs=16,
+                max_concurrent_runs=4)
+```
+
 
 
 ### Results
