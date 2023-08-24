@@ -123,14 +123,14 @@ hyperdrive_config = HyperDriveConfig(run_config = estimator,
 
 ### Results
 The best accuracy achived using hyperdrive was 0.77778 (78%) using following parameters:
-- C: 50
+- C: 0.01
 - max_inter: 50
 
 ## Screenshots
 ![hyper_runwidget_1](screenshots/hyper_runwidget_1.png)
 ![hyper_runwidget_2](screenshots/hyper_runwidget_2.png)
 ![hyper_iterations](screenshots/hyper_iterations.png)
-![hyper_bestmodel_metrics](screenshots/hyper_bestmodel_metrics.png)
+![hyper_bestmodel_metrics](screenshots/hyper_bestmodel_register.png)
 ### Future Improvements
 To improve the performance of HyperDrive runs, we can consider the following strategies:
 
@@ -146,7 +146,9 @@ To improve the performance of HyperDrive runs, we can consider the following str
 Model deployment involves making our trained model accessible and usable in a production environment. In Azure Machine Learning, we can deploy a model as a web service, which allows other applications to send data to the deployed model and receive predictions in return. During deployment, we need to specify the compute target, the scoring script that defines how the input data is processed, and the environment dependencies. Once deployed, we can test the web service using sample data and ensure that it is functioning as expected before integrating it into your application or workflow.
 
 The codesnipped below displays the steps to query the model and the results are beautifully highlighted in the screenshot.
-![deploy_model](screenshots/deploy_model.png)
+![registered_models](screenshots/registered_models.png)
+![deploy_model](screenshots/deploy_model_new.png)
+![endpoint](screenshots/endpoint.png)
 ![deploy_results](screenshots/deploy_results.png)
 
 ## Screen Recording
