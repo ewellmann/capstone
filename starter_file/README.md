@@ -39,15 +39,16 @@ These features provide valuable information about the patients and their health 
 *TODO*: Explain how you are accessing the data in your workspace.
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+Following `automl` settings and configuration were used for this experiment
 ```python
+# automl settings
 automl_settings = {
     "experiment_timeout_minutes": 20,
     "max_concurrent_iterations": 5,
     "primary_metric" : 'accuracy'
 }
 
-# TODO: Put your automl config here
+# automl config here
 automl_config = AutoMLConfig(
         task='classification',
         compute_target=compute_target,
@@ -57,10 +58,13 @@ automl_config = AutoMLConfig(
         **automl_settings
 )
 ```
-
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+Beste results were archieved using `VotingEnsemble` Algorithm withg an accuracy of 0.86950 (87%)
 
+`VotingEnsemble` is a machine learning technique where multiple models are trained independently and their predictions are combined through voting to make the final prediction. It leverages the diversity of the models to improve the overall accuracy and robustness of the prediction.
+### Screenshots
+
+### Future Improvements
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
 ## Hyperparameter Tuning
