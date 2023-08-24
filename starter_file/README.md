@@ -81,13 +81,13 @@ To improve the output of the Automated ML model, following steps can be consider
 
 ## Hyperparameter Tuning
 
-For the HyperDrive run we choose the logistic regression algorithm from the SKLearn framewokr. Logistic regression is a popular algorithm used for binary classification tasks. In the HyperDrive model, you can specify the hyperparameters of the logistic regression algorithm, such as the regularization strength `c` and the number of iterations `max_iter`. The HyperDrive will then explore different combinations of hyperparameters to find the best-performing model based on the specified evaluation metric
+For the HyperDrive run we choose the logistic regression algorithm from the SKLearn framewokr. Logistic regression is a popular algorithm used for binary classification tasks. In the HyperDrive model, you can specify the hyperparameters of the logistic regression algorithm, such as the regularization strength `C` and the number of iterations `max_iter`. The HyperDrive will then explore different combinations of hyperparameters to find the best-performing model based on the specified evaluation metric
 
 ### Hyperdrive Configuration
 
 We chose `BanditPolicy` as the early stopping policy. BanditPolicy stops poorly performing runs based on a slack factor and evaluation interval. It compares the performance of each run to the best performing run at a given evaluation interval and terminates runs that are not within the slack factor of the best performing run.
 
-As hyperparameter sampling method we choose RandomParameterSampling that randomly selects values for each hyperparameter from a defined search space. It allows for a more comprehensive exploration of the hyperparameter space, increasing the chances of finding the optimal combination of hyperparameters for the model.
+As hyperparameter sampling method we choose `RandomParameterSampling` that randomly selects values for each hyperparameter from a defined search space. It allows for a more comprehensive exploration of the hyperparameter space, increasing the chances of finding the optimal combination of hyperparameters for the model.
 
 Any other parameters such as searchspace, primary metric, total_runs, ... can be found in the codesnipped below.
 
@@ -122,16 +122,30 @@ hyperdrive_config = HyperDriveConfig(run_config = estimator,
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+The best accuracy achived using hyperdrive was 0.77778 (78%) using following parameters:
+- C: 50
+- max_inter: 50
+
 ## Screenshots
 ![hyper_runwidget_1](screenshots/hyper_runwidget_1.png)
 ![hyper_runwidget_2](screenshots/hyper_runwidget_2.png)
 ![hyper_iterations](screenshots/hyper_iterations.png)
 ![hyper_bestmodel_metrics](screenshots/hyper_bestmodel_metrics.png)
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+### Future Improvements
+To improve the performance of HyperDrive runs, we can consider the following strategies:
+
+1. Expand the search space: Increase the range or granularity of the hyperparameter values to explore a wider range of possibilities. This can help discover better-performing models.
+2. Use a more advanced sampling method: Instead of random or grid sampling, consider using more advanced methods like Bayesian sampling or Hyperband. These methods can intelligently explore the hyperparameter space and focus on promising areas.
+3. Increase the number of iterations: Allow HyperDrive to run for a longer duration or increase the maximum number of iterations. This gives more time for the search algorithm to find better-performing models.
+4. Use a more sophisticated early termination policy: Choose a more advanced early termination policy that can dynamically stop poorly performing runs. This can save time by terminating runs that are unlikely to improve further.
+5. Feature engineering and data preprocessing: Prioritize feature engineering and data preprocessing techniques to improve the quality and relevance of the input data. This can have a significant impact on the model's performance.
+6. Experiment with different algorithms: Consider trying different algorithms or model architectures to see if they perform better for your specific problem. HyperDrive can be used to tune hyperparameters for various algorithms, allowing you to find the best combination.
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+
+Model deployment involves making our trained model accessible and usable in a production environment. In Azure Machine Learning, we can deploy a model as a web service, which allows other applications to send data to the deployed model and receive predictions in return. During deployment, we need to specify the compute target, the scoring script that defines how the input data is processed, and the environment dependencies. Once deployed, we can test the web service using sample data and ensure that it is functioning as expected before integrating it into your application or workflow.
+
+The codesnipped below displays the steps to query the model and the results are beautifully highlighted in the screenshot.
 ![deploy_model](screenshots/deploy_model.png)
 ![deploy_results](screenshots/deploy_results.png)
 
